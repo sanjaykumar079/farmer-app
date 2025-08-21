@@ -1,37 +1,40 @@
+// src/pages/Home.jsx
 import { Link } from "react-router-dom";
 import { useSupabase } from "../context/SupabaseContext";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Home() {
   const { user } = useSupabase();
+  const { translate } = useLanguage();
 
   const features = [
     {
       icon: "🌾",
-      title: "Smart Query System",
-      description: "Submit your farming questions and get AI-powered responses instantly"
+      title: translate('smartQuerySystem'),
+      description: translate('smartQueryDesc')
     },
     {
       icon: "👨‍💼",
-      title: "Expert Consultation",
-      description: "Connect directly with certified horticulture officers for professional advice"
+      title: translate('expertConsultation'),
+      description: translate('expertConsultationDesc')
     },
     {
       icon: "📊",
-      title: "Analytics Dashboard",
-      description: "Track your queries, monitor crop health, and analyze farming patterns"
+      title: translate('analyticsDashboard'),
+      description: translate('analyticsDashboardDesc')
     },
     {
       icon: "🚀",
-      title: "Real-time Support",
-      description: "Get immediate assistance for urgent farming issues and emergencies"
+      title: translate('realtimeSupport'),
+      description: translate('realtimeSupportDesc')
     }
   ];
 
   const stats = [
-    { number: "10K+", label: "Active Farmers" },
-    { number: "500+", label: "Expert Officers" },
-    { number: "50K+", label: "Queries Resolved" },
-    { number: "98%", label: "Success Rate" }
+    { number: "10K+", label: translate('activeFarmers') },
+    { number: "500+", label: translate('expertOfficers') },
+    { number: "50K+", label: translate('queriesResolved') },
+    { number: "98%", label: translate('successRate') }
   ];
 
   return (
@@ -45,28 +48,28 @@ export default function Home() {
               <span className="text-8xl">🌾</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold font-display mb-6">
-              <span className="gradient-text">AgroConnect</span>
+              <span className="gradient-text">{translate('heroTitle')}</span>
             </h1>
             <p className="text-xl md:text-2xl text-farmGreen-700 mb-8 max-w-3xl mx-auto font-medium">
-              Bridging the gap between farmers and horticulture experts with AI-powered solutions
+              {translate('heroSubtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
               {user ? (
                 <Link to="/dashboard">
                   <button className="btn-primary text-lg px-8 py-4">
-                    Go to Dashboard
+                    {translate('farmerDashboard')}
                   </button>
                 </Link>
               ) : (
                 <Link to="/login">
                   <button className="btn-primary text-lg px-8 py-4">
-                    Get Started Today
+                    {translate('getStarted')}
                   </button>
                 </Link>
               )}
               <Link to="/about">
                 <button className="btn-secondary text-lg px-8 py-4">
-                  Learn More
+                  {translate('learnMore')}
                 </button>
               </Link>
             </div>
@@ -137,7 +140,7 @@ export default function Home() {
           {!user && (
             <Link to="/login">
               <button className="bg-white text-farmGreen-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-farmGreen-50 transform hover:scale-105 transition-all duration-200 shadow-xl">
-                Start Your Journey
+                {translate('getStarted')}
               </button>
             </Link>
           )}
@@ -163,14 +166,14 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <div className="space-y-2">
                 <Link to="/" className="block text-farmGreen-200 hover:text-white transition-colors">
-                  Home
+                  {translate('home')}
                 </Link>
                 <Link to="/about" className="block text-farmGreen-200 hover:text-white transition-colors">
-                  About
+                  {translate('about')}
                 </Link>
                 {user && (
                   <Link to="/dashboard" className="block text-farmGreen-200 hover:text-white transition-colors">
-                    Dashboard
+                    {translate('farmerDashboard')}
                   </Link>
                 )}
               </div>
